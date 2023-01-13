@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { getTrending } from '../servises/services';
+import { MovieItem, Main } from './Home.styled';
 
 const Home = () => {
   const [trendingList, setTrendingList] = useState([]);
@@ -17,12 +18,20 @@ const Home = () => {
     trendingCatch();
   }, []);
 
+  console.log(trendingList);
+
   return (
-    <main>
+    <Main>
       <h1>Trending today</h1>
-      {trendingList &&
-        trendingList.map(list => <li key={list.id}>{list.original_name}</li>)}
-    </main>
+      <ul>
+        {trendingList &&
+          trendingList.map(list => (
+            <li key={list.id}>
+              <MovieItem>{list.original_name ?? list.original_title}</MovieItem>
+            </li>
+          ))}
+      </ul>
+    </Main>
   );
 };
 
