@@ -18,8 +18,6 @@ const Home = () => {
     trendingCatch();
   }, []);
 
-  console.log(trendingList);
-
   return (
     <Main>
       <h1>Trending today</h1>
@@ -27,7 +25,9 @@ const Home = () => {
         {trendingList &&
           trendingList.map(list => (
             <li key={list.id}>
-              <MovieItem>{list.original_name ?? list.original_title}</MovieItem>
+              <MovieItem to={`${list.id}`}>
+                {list.original_name ?? list.original_title}
+              </MovieItem>
             </li>
           ))}
       </ul>
