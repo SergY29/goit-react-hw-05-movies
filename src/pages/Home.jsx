@@ -6,7 +6,6 @@ const Home = () => {
   const [trendingList, setTrendingList] = useState([]);
 
   useEffect(() => {
-    console.log('useEffect');
     async function trendingCatch() {
       try {
         const data = await getTrending();

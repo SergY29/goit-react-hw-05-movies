@@ -13,7 +13,7 @@ export const Layout = () => {
           <NavItem to="movies">Movie</NavItem>
         </nav>
       </Header>
-      <Suspense fallback={null}>
+      <Suspense fallback={<div>Loading...</div>}>
         <Outlet />
       </Suspense>
     </div>
