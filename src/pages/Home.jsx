@@ -25,7 +25,7 @@ const Home = () => {
         {trendingList &&
           trendingList.map(list => (
             <li key={list.id}>
-              <MovieItem to={`${list.id}`}>
+              <MovieItem to={`movies/${list.id}`}>
                 {list.original_name ?? list.original_title}
               </MovieItem>
             </li>
