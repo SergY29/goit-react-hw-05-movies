@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getDetailMovie } from '../servises/services';
+import { Main } from './MovieDetails.styled';
 
 const MovieDetails = () => {
   const [movieInformation, setMovieInformation] = useState(null);
@@ -20,7 +21,7 @@ const MovieDetails = () => {
   }, [id]);
 
   return (
-    <main>
+    <Main>
       <div>
         {movieInformation && (
           <div key={movieInformation.id}>
@@ -32,7 +33,7 @@ const MovieDetails = () => {
           </div>
         )}
       </div>
-    </main>
+    </Main>
   );
 };
 
