@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 import { getTrending } from '../servises/services';
 import { MovieItem, Main } from './Home.styled';
+import { useLocation } from 'react-router-dom';
 
 const Home = () => {
   const [trendingList, setTrendingList] = useState([]);
+  const location = useLocation();
 
   useEffect(() => {
     async function trendingCatch() {
@@ -24,7 +26,7 @@ const Home = () => {
         {trendingList &&
           trendingList.map(list => (
             <li key={list.id}>
-              <MovieItem to={`movies/${list.id}`}>
+              <MovieItem to={`movies/${list.id}`} state={{ from: location }}>
                 {list.original_name ?? list.original_title}
               </MovieItem>
             </li>

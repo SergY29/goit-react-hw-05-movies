@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { getSearchMovie } from '../servises/services';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useLocation } from 'react-router-dom';
 import { MovieItem, Main, Form } from './Movies.styled';
 
 const Movies = () => {
@@ -8,6 +8,8 @@ const Movies = () => {
   const [filmList, setFilmList] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
   const search = searchParams.get('query') ?? '';
+  const location = useLocation();
+  const backLinkHref = location.state?.from ?? '/';
 
   const handleChange = event => {
     const normalizeValue = event.target.value.toLowerCase();
@@ -64,7 +66,7 @@ const Movies = () => {
         {filmList &&
           filmList.map(film => (
             <li key={film.id}>
-              <MovieItem to={`${film.id}`}>
+              <MovieItem to={`${film.id}`} state={{ from: location }}>
                 {film.original_name ?? film.original_title}
               </MovieItem>
             </li>
