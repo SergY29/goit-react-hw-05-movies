@@ -9,7 +9,6 @@ const Movies = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const search = searchParams.get('query') ?? '';
   const location = useLocation();
-  const backLinkHref = location.state?.from ?? '/';
 
   const handleChange = event => {
     const normalizeValue = event.target.value.toLowerCase();
