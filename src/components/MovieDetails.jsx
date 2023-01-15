@@ -56,7 +56,7 @@ const MovieDetails = () => {
                 {movieInformation.release_date.slice(0, 4) ?? ''})
               </Title>
               <p>
-                User score:{' '}
+                User score:
                 {Math.round(movieInformation.vote_average * 10) ?? ''}%
               </p>
               <TitleItem>Overview</TitleItem>
