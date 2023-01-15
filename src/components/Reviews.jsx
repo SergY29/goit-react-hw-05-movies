@@ -1,25 +1,37 @@
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { getMovieReviews } from '../servises/services';
+import { Item } from './Reviews.styled';
 
 const Reviews = () => {
+  const [movieReviews, setMovieReviews] = useState(null);
   const { id } = useParams();
 
-  console.log(id);
-  //   useEffect(() => {
-  //     async function trendingCatch() {
-  //       try {
-  //         const data = await getTrending();
-  //         setTrendingList(data.data.results);
-  //       } catch (error) {
-  //         console.log(error);
-  //       }
-  //     }
-  //     trendingCatch();
-  //   }, []);
+  useEffect(() => {
+    async function reviewsCatch() {
+      try {
+        const data = await getMovieReviews(id);
+        // console.log(data.data.results);
+        setMovieReviews(data.data.results);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    reviewsCatch();
+  }, [id]);
 
   return (
     <ul>
-      <li>Reviews</li>
-      <li>Reviews</li>
+      {movieReviews && movieReviews.length > 0 ? (
+        movieReviews.map(review => (
+          <Item key={review.id}>
+            <h3> Author: {review.author}</h3>
+            <p>{review.content}</p>
+          </Item>
+        ))
+      ) : (
+        <p>Sorry! We don`t have any reviews for this movie</p>
+      )}
     </ul>
   );
 };

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getMovieCredits } from '../servises/services';
-import { Img, Span } from './Cast.styled';
+import { Img, Item, Span } from './Cast.styled';
 
 const Cast = () => {
   const [castInformation, setCastInformation] = useState(null);
@@ -11,7 +11,7 @@ const Cast = () => {
     async function creditsCatch() {
       try {
         const data = await getMovieCredits(id);
-        console.log(data.data.cast);
+        // console.log(data.data.cast);
         setCastInformation(data.data.cast);
       } catch (error) {
         console.log(error);
@@ -24,7 +24,7 @@ const Cast = () => {
     <ul>
       {castInformation &&
         castInformation.map(cast => (
-          <li key={cast.id}>
+          <Item key={cast.credit_id}>
             {cast.profile_path && (
               <Img
                 src={`https://www.themoviedb.org/t/p/original${cast.profile_path}`}
@@ -36,7 +36,7 @@ const Cast = () => {
               Character:
               <Span>{cast.character}</Span>
             </p>
-          </li>
+          </Item>
         ))}
     </ul>
   );
