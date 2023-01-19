@@ -31,7 +31,8 @@ const Movies = () => {
       return;
     }
     movieCatch(search);
-  }, [search]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   async function movieCatch(search) {
     try {
