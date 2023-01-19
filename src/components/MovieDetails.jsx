@@ -70,10 +70,14 @@ const MovieDetails = () => {
       <TitleItem>Additional information</TitleItem>
       <List>
         <li>
-          <LinkAbout to="cast">Cast</LinkAbout>
+          <LinkAbout to="cast" state={{ from: backLinkHref }}>
+            Cast
+          </LinkAbout>
         </li>
         <li>
-          <LinkAbout to="reviews">Reviews</LinkAbout>
+          <LinkAbout to="reviews" state={{ from: backLinkHref }}>
+            Reviews
+          </LinkAbout>
         </li>
       </List>
       <Suspense fallback={<div>Loading...</div>}>
