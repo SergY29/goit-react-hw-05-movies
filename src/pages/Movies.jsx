@@ -11,14 +11,13 @@ const Movies = () => {
   const location = useLocation();
 
   const handleChange = event => {
-    const normalizeValue = event.target.value.toLowerCase();
-    setSearch(event.target.value);
-    setSearchParams(normalizeValue !== '' ? { query: normalizeValue } : {});
+    setSearch(event.target.value.toLowerCase());
   };
 
   const handleSubmit = event => {
     event.preventDefault();
-    if (search.trim() === '') {
+    setSearchParams(searchInput !== '' ? { query: searchInput } : {});
+    if (searchInput.trim() === '') {
       alert('Enter words to search for');
       return;
     }
@@ -31,8 +30,7 @@ const Movies = () => {
       return;
     }
     movieCatch(search);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [search]);
 
   async function movieCatch(search) {
     try {
